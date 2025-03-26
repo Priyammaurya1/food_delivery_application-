@@ -1,5 +1,6 @@
+import 'package:deliveryapp/pages/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:deliveryapp/pages/login.dart';
+// import 'package:deliveryapp/pages/login.dart';
 import 'package:deliveryapp/widgets/content_model.dart';
 import 'package:deliveryapp/widgets/widget_support.dart';
 
@@ -82,7 +83,7 @@ class _OnboardState extends State<Onboard> {
               if (currentIndex == contents.length - 1) {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Login()),
+                  MaterialPageRoute(builder: (context) => SignUp()),
                 );
               }
               _controller.nextPage(
