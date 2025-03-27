@@ -45,3 +45,9 @@ android {
 flutter {
     source = "../.."
 }
+
+dependencies {
+    implementation("androidx.fragment:fragment:1.5.7") 
+}
+
+

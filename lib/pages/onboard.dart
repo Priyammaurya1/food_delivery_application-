@@ -1,6 +1,5 @@
 import 'package:deliveryapp/pages/signup.dart';
 import 'package:flutter/material.dart';
-// import 'package:deliveryapp/pages/login.dart';
 import 'package:deliveryapp/widgets/content_model.dart';
 import 'package:deliveryapp/widgets/widget_support.dart';
 
@@ -43,39 +42,41 @@ class _OnboardState extends State<Onboard> {
                 });
               },
               itemBuilder: (_, i) {
-                return Padding(
-                  padding: EdgeInsets.only(top: 40, left: 20, right: 20),
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        contents[i].image,
-                        height: 550,
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.fill,
-                      ),
-                      SizedBox(height: 40),
-                      Text(
-                        contents[i].title,
-                        style: AppWidget.semiBoldTextFeildStyle(),
-                      ),
-                      SizedBox(height: 20),
-                      Text(
-                        contents[i].description,
-                        style: AppWidget.lightTextFeildStyle(),
-                      ),
-                    ],
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 40, left: 20, right: 20),
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          contents[i].image,
+                          height: MediaQuery.of(context).size.height * 0.5,
+                          width: MediaQuery.of(context).size.width,
+                          fit: BoxFit.contain,
+                        ),
+                        SizedBox(height: 40),
+                        Text(
+                          contents[i].title,
+                          style: AppWidget.semiBoldTextFeildStyle(),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          contents[i].description,
+                          style: AppWidget.lightTextFeildStyle(),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                contents.length,
-                (index) => buildDot(index, context),
-              ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              contents.length,
+              (index) => buildDot(index, context),
             ),
           ),
           GestureDetector(
@@ -85,29 +86,32 @@ class _OnboardState extends State<Onboard> {
                   context,
                   MaterialPageRoute(builder: (context) => SignUp()),
                 );
+              } else {
+                _controller.nextPage(
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.bounceIn,
+                );
               }
-              _controller.nextPage(
-                duration: Duration(milliseconds: 300),
-                curve: Curves.bounceIn,
-              );
             },
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.red,
-                borderRadius: BorderRadius.circular(20)
-                ),
+                borderRadius: BorderRadius.circular(20),
+              ),
               height: 60,
               margin: EdgeInsets.all(40),
               width: double.infinity,
               child: Center(
-                child: Text(currentIndex == contents.length - 1 ? 'Get Started' : 'Next', 
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Poppins',
-                  color: Colors.white)),
+                child: Text(
+                  currentIndex == contents.length - 1 ? 'Get Started' : 'Next',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Poppins',
+                    color: Colors.white,
+                  ),
+                ),
               ),
-                
             ),
           ),
         ],
