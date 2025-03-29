@@ -1,7 +1,6 @@
+import 'package:deliveryapp/admin/admin_login.dart';
 // import 'package:deliveryapp/pages/bottom_nav_bar.dart';
 // import 'package:deliveryapp/pages/onboard.dart';
-import 'package:deliveryapp/pages/wallet.dart';
-// import 'package:deliveryapp/pages/signup.dart';
 import 'package:deliveryapp/widgets/app_constant.dart'; // Ensure publishableKey is in this file
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,6 +22,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: Wallet());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: AdminLogin());
   }
 }
