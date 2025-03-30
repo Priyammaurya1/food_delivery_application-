@@ -27,7 +27,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           ),
         ),
       );
-      emailController.clear();      // Clear the email field
+      emailController.clear(); // Clear the email field
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
