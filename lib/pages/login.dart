@@ -1,6 +1,5 @@
 import 'package:deliveryapp/pages/bottom_nav_bar.dart';
 import 'package:deliveryapp/pages/forgotpassword.dart';
-// import 'package:deliveryapp/pages/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:deliveryapp/pages/signup.dart';
