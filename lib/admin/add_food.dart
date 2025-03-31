@@ -119,7 +119,18 @@ class _AddFoodState extends State<AddFood> {
                 ),
               ),
               SizedBox(height: 30),
+              Text(
+                'Select Category',
+                style: AppWidget.semiBoldTextFeildStyle(),
+              ),
+              SizedBox(height: 35),
               Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Color(0xFFececf8),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
                     items:
@@ -137,14 +148,40 @@ class _AddFoodState extends State<AddFood> {
                               ),
                             )
                             .toList(),
-                    onChanged: ((value) => setState(() {
-                      this.value = value;
-                    })),
+                    onChanged:
+                        ((value) => setState(() {
+                          this.value = value;
+                        })),
                     dropdownColor: Colors.white,
-                    hint: Text("Select Catoegory"),
+                    hint: Text("Select Category"),
                     iconSize: 36,
                     icon: Icon(Icons.arrow_drop_down, color: Colors.black),
                     value: value,
+                  ),
+                ),
+              ),
+              SizedBox(height: 40),
+              Center(
+                child: Material(
+                  elevation: 5,
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    width: 150,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Add Food',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
