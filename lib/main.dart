@@ -1,4 +1,5 @@
 import 'package:deliveryapp/admin/add_food.dart';
+import 'package:deliveryapp/admin/home_admin.dart';
 import 'package:deliveryapp/widgets/app_constant.dart'; // Ensure publishableKey is in this file
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,6 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: AddFood());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeAdmin());
   }
 }
