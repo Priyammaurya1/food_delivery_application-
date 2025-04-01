@@ -1,5 +1,9 @@
+import 'dart:io';
 import 'package:deliveryapp/widgets/widget_support.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:random_string/random_string.dart';
 
 class AddFood extends StatefulWidget {
   const AddFood({super.key});
@@ -14,6 +18,34 @@ class _AddFoodState extends State<AddFood> {
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController detailController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+  File? selectedImage;
+
+  Future getImage() async {
+    var image = await _picker.pickImage(source: ImageSource.gallery);
+    selectedImage = File(image!.path);
+    setState(() {
+      
+    });
+  }
+
+
+  uploadImage() {
+    if(selectedImage != null&& nameController.text!=""&&priceController.text!=""&&detailController.text!="") {
+      String addId =randomAlphaNumeric(10);
+
+      Reference FirebaseStorageRef = FirebaseStorage.instance.ref().child("blogImages").child(addId);
+      // Upload image to Firebase Storage or any other storage service
+      // Use the selectedImage variable to get the file path
+    } else {
+      // Show an error message if no image is selected
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Please select an image')),
+      );
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,24 +74,58 @@ class _AddFoodState extends State<AddFood> {
                 style: AppWidget.semiBoldTextFeildStyle(),
               ),
               SizedBox(height: 10),
-              Center(
-                child: Material(
-                  elevation: 4,
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 0, 0, 0),
-                        width: 2.5,
+              selectedImage == null
+                  ? GestureDetector(
+                    onTap: () {
+                      getImage();
+                    },
+                    child: Center(
+                      child: Material(
+                        elevation: 4,
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          width: 150,
+                          height: 150,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color.fromARGB(255, 0, 0, 0),
+                              width: 2.5,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Icon(
+                            Icons.camera_alt_outlined,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Icon(Icons.camera_alt_outlined, color: Colors.black),
+                  )
+                  : Center(
+                    child: Material(
+                      elevation: 4,
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            width: 2.5,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          
+                          child: Image.file(
+                            selectedImage!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
               SizedBox(height: 40),
               Text('Item Name', style: AppWidget.semiBoldTextFeildStyle()),
               SizedBox(height: 15),
